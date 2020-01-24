@@ -9,12 +9,16 @@ namespace TerrainGenerator
         public int mapWidth;
         public int mapHeight;
         public float noiseScale;
+        
+        public int octaves;
+        [Range(-1,1)] public float persistence;
+        public float lacunarity;
 
         public bool autoUpdate;
 
         public void GenerateMap()
         {
-            float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, noiseScale, 1,1,1);
+            float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, noiseScale, octaves, persistence, lacunarity);
 
             MapDisplay display = FindObjectOfType<MapDisplay>();
             display.DrawNoiseMap(noiseMap);

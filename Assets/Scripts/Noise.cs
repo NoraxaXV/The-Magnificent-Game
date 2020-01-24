@@ -6,9 +6,20 @@ namespace TerrainGenerator
 {
     public static class Noise
     {
-        public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, float scale, int octaves, float persistance, float lacunarity)
+        public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity)
         {
+            
             float[,] noiseMap = new float[mapWidth, mapHeight];
+
+            System.Random prng = new System.Random (seed);
+            Vector2[] octaveOffsets = new Vector2[octaves];
+            for (int i = 0; i < octaves; i++) {
+                float offsetX = prng.Next(-10000, 10000);
+                float offsetY = prng.Next(-10000, 10000);
+
+                octaveOffsets[i] = new Vector2(offsetX, offsetY);
+            }
+            
             if (scale <= 0)
             {
                 scale = 0.001f;
