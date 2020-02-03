@@ -14,6 +14,9 @@ namespace TerrainGenerator
         [Range(-1,1)] public float persistence;
         public float lacunarity;
 
+        public int seed;
+        public Vector2 offset;
+
         public bool autoUpdate;
 
         public void GenerateMap()
